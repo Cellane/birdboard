@@ -11,6 +11,10 @@ class Task extends Model
         'completed'
     ];
 
+    protected $touches = [
+        'project'
+    ];
+
     public function path()
     {
         return "/projects/{$this->project->id}/tasks/{$this->id}";
