@@ -8,7 +8,7 @@
             </a>
             / {{ $project->title }}
         </p>
-        <a href="/projects/create" class="button">Add Project</a>
+        <a href="{{ $project->path() . '/edit' }}" class="button">Edit Project</a>
     </header>
 
     <main>
@@ -20,7 +20,7 @@
                     @foreach ($project->tasks as $task)
                         <div class="card mb-3">
                             <form action="{{ $task->path() }}" method="post">
-                                @method('patch')
+                                @method ('patch')
                                 @csrf
 
                                 <div class="flex">
@@ -52,7 +52,7 @@
                 <div>
                     <h2 class="text-lg text-grey font-normal mb-3">General Notes</h2>
                     <form action="{{ $project->path() }}" method="post">
-                        @method('patch')
+                        @method ('patch')
                         @csrf
 
                         <textarea
