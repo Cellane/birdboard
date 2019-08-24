@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
+    protected static $recordableEvents = ['created', 'deleted'];
+
     protected $fillable = [
         'body',
         'completed'
@@ -29,11 +33,6 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function activity()
-    {
-        return $this->morphMany(Activity::class, 'subject')->latest();
-    }
-
     public function complete()
     {
         $this->update(['completed' => true]);
@@ -44,13 +43,5 @@ class Task extends Model
     {
         $this->update(['completed' => false]);
         $this->recordActivity('incompleted_task');
-    }
-
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'project_id' => $this->project->id,
-            'description' => $description
-        ]);
     }
 }
