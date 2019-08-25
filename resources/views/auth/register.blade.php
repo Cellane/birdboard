@@ -4,7 +4,7 @@
 <form
     action="{{ route('register') }}"
     method="post"
-    class="lg:w-1/2 lg:mx-auto bg-white py-12 px-16 rounded shadow"
+    class="lg:w-1/2 lg:mx-auto bg-card py-12 px-16 rounded shadow"
 >
     @csrf
 
@@ -17,7 +17,7 @@
             <input
                 type="text"
                 name="name"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full {{ $errors->has('name') ? 'is-invalid' : '' }}"
                 value="{{ old('name') }}"
                 required
                 autofocus
@@ -32,7 +32,7 @@
             <input
                 type="email"
                 name="email"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full {{ $errors->has('email') ? 'is-invalid' : '' }}"
                 value="{{ old('email') }}"
                 required
             >
@@ -46,7 +46,7 @@
             <input
                 type="password"
                 name="password"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full {{ $errors->has('password') ? 'is-invalid' : '' }}"
                 required
             >
         </div>
@@ -59,7 +59,7 @@
             <input
                 type="password"
                 name="password_confirmation"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full"
                 required
             >
         </div>

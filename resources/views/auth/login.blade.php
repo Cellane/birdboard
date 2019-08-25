@@ -4,7 +4,7 @@
 <form
     action="{{ route('login') }}"
     method="post"
-    class="lg:w-1/2 lg:mx-auto bg-white py-12 px-16 rounded shadow"
+    class="lg:w-1/2 lg:mx-auto bg-card py-12 px-16 rounded shadow"
 >
     @csrf
 
@@ -17,7 +17,7 @@
             <input
                 type="email"
                 name="email"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full {{ $errors->has('email') ? 'is-invalid' : '' }}"
                 value="{{ old('email') }}"
                 required
             >
@@ -31,7 +31,7 @@
             <input
                 type="password"
                 name="password"
-                class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full {{ $errors->has('password') ? 'is-invalid' : '' }}"
                 required
             >
         </div>
@@ -59,7 +59,7 @@
             </button>
 
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-grey text-sm">
+                <a href="{{ route('password.request') }}" class="text-default text-sm">
                     Forgot Your Password?
                 </a>
             @endif
