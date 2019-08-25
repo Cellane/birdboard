@@ -39,16 +39,8 @@ class ManageProjectsTest extends TestCase
         $this->get('/projects/create')
             ->assertStatus(200);
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->sentence,
-            'notes' => 'General notes here.'
-        ];
-        $response = $this->post('/projects', $attributes);
-        $project = Project::where($attributes)->first();
-
-        $response->assertRedirect($project->path());
-        $this->get($project->path())
+        $this->followingRedirects()
+            ->post('/projects', $attributes = factory(Project::class)->raw())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
@@ -140,11 +132,16 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function an_authenticated_user_cannot_delete_the_projects_of_others()
     {
-        $this->signIn();
-
-         $project = factory(Project::class)->create();
+        $user = $this->signIn();
+        $project = factory(Project::class)->create();
 
         $this->delete($project->path())
+            ->assertStatus(403);
+
+        $project->invite($user);
+
+        $this->actingAs($user)
+            ->delete($project->path())
             ->assertStatus(403);
     }
 
