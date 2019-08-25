@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     protected $fillable = [
+        'user_id',
         'project_id',
         'description',
         'changes'
@@ -19,5 +20,10 @@ class Activity extends Model
     public function subject()
     {
         return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
