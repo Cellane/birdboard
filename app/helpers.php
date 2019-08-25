@@ -8,5 +8,5 @@ function gravatar_url($email)
         'd' => 'https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg'
     ]);
 
-    return "https://gravatar.com/avatar/{$email}${query}";
+    return "https://gravatar.com/avatar/{$email}?${query}";
 }
