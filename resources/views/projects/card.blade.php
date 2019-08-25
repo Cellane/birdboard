@@ -5,5 +5,14 @@
         </a>
     </h3>
 
-    <div class="text-grey">{{ str_limit($project->description, 100) }}</div>
+    <div class="text-grey mb-4">{{ str_limit($project->description, 100) }}</div>
+
+    <footer>
+        <form action="{{ $project->path()" method="post" class="text-right">
+            @method ('delete')
+            @csrf
+
+            <button type="submit" class="text-xs">Delete</button>
+        </form>
+    </footer>
 </div>
