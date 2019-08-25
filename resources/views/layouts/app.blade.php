@@ -21,9 +21,9 @@
 </head>
 <body class="theme-dark bg-page">
     <div id="app">
-        <nav class="bg-header">
+        <nav class="bg-header section">
             <div class="container mx-auto">
-                <div class="flex justify-between items-center py-2">
+                <div class="flex justify-between items-center py-1">
                     <h1>
                         <a class="navbar-brand" href="{{ url('/projects') }}">
                             <svg
@@ -85,9 +85,11 @@
             </div>
         </nav>
 
-        <main class="container mx-auto py-6 section">
-            @yield('content')
-        </main>
+        <div class="section">
+            <main class="container mx-auto py-6">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
