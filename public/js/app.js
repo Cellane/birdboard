@@ -1992,6 +1992,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1999,7 +2001,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         title: "",
         description: "",
         tasks: [{
-          value: ""
+          body: ""
         }]
       },
       errors: {}
@@ -2008,7 +2010,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     addTask: function addTask() {
       this.form.tasks.push({
-        value: ""
+        body: ""
       });
     },
     submit: function () {
@@ -38254,8 +38256,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: task.value,
-                          expression: "task.value"
+                          value: task.body,
+                          expression: "task.body"
                         }
                       ],
                       key: index,
@@ -38265,13 +38267,13 @@ var render = function() {
                         type: "text",
                         placeholder: "Task " + (index + 1)
                       },
-                      domProps: { value: task.value },
+                      domProps: { value: task.body },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(task, "value", $event.target.value)
+                          _vm.$set(task, "body", $event.target.value)
                         }
                       }
                     })
@@ -38284,6 +38286,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "inline-flex items-center text-xs",
+                  attrs: { type: "button" },
                   on: { click: _vm.addTask }
                 },
                 [
@@ -38341,6 +38344,7 @@ var render = function() {
               "button",
               {
                 staticClass: "button mr-4 is-outlined",
+                attrs: { type: "button" },
                 on: {
                   click: function($event) {
                     return _vm.$modal.hide("new-project")

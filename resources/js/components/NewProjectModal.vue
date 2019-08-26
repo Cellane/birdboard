@@ -56,7 +56,7 @@
             <input
               v-for="(task, index) in form.tasks"
               :key="index"
-              v-model="task.value"
+              v-model="task.body"
               type="text"
               class="border border-muted-light mb-2 p-2 text-xs block w-full rounded"
               :placeholder="'Task ' + (index + 1)"
@@ -64,6 +64,7 @@
           </div>
 
           <button
+            type="button"
             class="inline-flex items-center text-xs"
             @click="addTask"
           >
@@ -99,6 +100,7 @@
 
       <footer class="flex justify-end">
         <button
+          type="button"
           class="button mr-4 is-outlined"
           @click="$modal.hide('new-project')"
         >
@@ -117,7 +119,7 @@ export default {
       form: {
         title: "",
         description: "",
-        tasks: [{ value: "" }]
+        tasks: [{ body: "" }]
       },
 
       errors: {}
@@ -125,7 +127,7 @@ export default {
   },
   methods: {
     addTask() {
-      this.form.tasks.push({ value: "" })
+      this.form.tasks.push({ body: "" })
     },
 
     async submit() {
