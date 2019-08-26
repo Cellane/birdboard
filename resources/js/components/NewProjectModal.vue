@@ -19,13 +19,13 @@
               v-model="form.title"
               id="title"
               class="border p-2 text-xs block w-full rounded"
-              :class="errors.title ? 'border-error' : 'border-muted-light'"
+              :class="form.errors.title ? 'border-error' : 'border-muted-light'"
             >
             <span
-              v-if="errors.title"
+              v-if="form.errors.title"
               class="text-xs italic text-error"
             >
-              {{ errors.title[0] }}
+              {{ form.errors.title[0] }}
             </span>
           </div>
 
@@ -39,13 +39,13 @@
               id="description"
               rows="7"
               class="border p-2 text-xs block w-full rounded"
-              :class="errors.description ? 'border-error' : 'border-muted-light'"
+              :class="form.errors.description ? 'border-error' : 'border-muted-light'"
             ></textarea>
             <span
-              v-if="errors.description"
+              v-if="form.errors.description"
               class="text-xs italic text-error"
             >
-              {{ errors.description[0] }}
+              {{ form.errors.description[0] }}
             </span>
           </div>
         </div>
@@ -113,16 +113,16 @@
 </template>
 
 <script>
+import BirdboardForm from "./BirdboardForm"
+
 export default {
   data() {
     return {
-      form: {
+      form: new BirdboardForm({
         title: "",
         description: "",
         tasks: [{ body: "" }]
-      },
-
-      errors: {}
+      })
     }
   },
   methods: {
@@ -132,12 +132,14 @@ export default {
 
     async submit() {
       try {
-        const response = await axios.post("/projects", this.form)
+        if (!this.form.tasks[0].body) {
+          delete this.form.originalData.tasks
+        }
+
+        const response = await this.form.submit("/projects")
 
         location = response.data.message
-      } catch (error) {
-        this.errors = error.response.data.errors
-      }
+      } catch (error) {}
     }
   }
 }
